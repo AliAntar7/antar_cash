@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "57583617280",
+    "project_id": "antarcash-e36f9",
+    "storage_bucket": "antarcash-e36f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57583617280:android:df71a74110ec1a026d9fe5",
+        "android_client_info": {
+          "package_name": "com.example.antar_cash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCax4k6tEMR1mdRLiX1NBDOEc9JqbrDATI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
