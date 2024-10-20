@@ -7,11 +7,13 @@ class TransactionsCard extends StatelessWidget {
     required this.amount,
     required this.date,
     required this.type,
+    required this.id,
     this.note,
     required this.fees,
     this.service,
   });
 
+  final String id;
   final String userName;
   final String amount;
   final String date;

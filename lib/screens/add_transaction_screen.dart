@@ -1,8 +1,7 @@
 import 'package:antar_cash/cubit/transaction_cubit/transaction_cubit.dart';
 import 'package:antar_cash/cubit/transaction_cubit/transaction_states.dart';
+import 'package:antar_cash/screens/home_screen.dart';
 import 'package:antar_cash/widgets/number_field.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -212,6 +211,13 @@ class AddTransactionScreen extends StatelessWidget {
                             service.clear();
                             note.clear();
                             Navigator.pop(context);
+                            // Navigator.pushAndRemoveUntil(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) => const HomeScreen(),
+                            //   ),
+                            //       (route) => false,
+                            // );
                           },
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(double.infinity, 50),

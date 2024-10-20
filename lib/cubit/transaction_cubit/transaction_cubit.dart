@@ -62,8 +62,8 @@ class TransactionCubit extends Cubit<TransactionStates> {
   void getAllTransactions() async {
     emit(LoadingToGetAllTransaction());
     try {
-      final transactionsList = await FirebaseFirestore.instance.collection('transactions').get();
-      emit(GetAllTransactionSucces(transactionsList: transactionsList));
+      final transactionsList = await FirebaseFirestore.instance.collection('transactions').orderBy('date', descending: true).get();
+      emit(GetAllTransactionSucces(transactionsList: transactionsList.docs));
     } on FirebaseException catch (e) {
       emit(GetAllTransactionFailed(message: '-------------${e.message}'));
     } catch (e) {
@@ -73,26 +73,18 @@ class TransactionCubit extends Cubit<TransactionStates> {
   }
 
 
-  /// this function to calculate the total amount, fees, and service from all transactions
-  int totalAmount = 0;
-  int totalFees = 0;
-  int totalService = 0;
-  void calculateTotalAllTransaction() async {
-    emit(CalculatingTotalAmount());
+  void deleteTransaction(String id) async {
+    emit(LoadingToDeleteTransaction());
     try {
-      final transactionsList = await FirebaseFirestore.instance.collection('transactions').get();
-      for (var element in transactionsList.docs) {
-        totalAmount += int.parse(element['amount']);
-        totalFees += int.parse(element['fees']);
-        totalService += int.parse(element['service']);
-      }
-      emit(CalculatedTotalAmount());
+      await FirebaseFirestore.instance.collection('transactions').doc(id).delete();
+      emit(DeleteTransactionSucces());
     } on FirebaseException catch (e) {
-      emit(CalculateTotalAmountFailed(message: '-------------${e.message}'));
+      emit(DeleteTransactionFailed(message: '-------------${e.message}'));
     } catch (e) {
       print(e);
-      emit(CalculateTotalAmountFailed(message: e.toString()));
+      emit(DeleteTransactionFailed(message: e.toString()));
     }
   }
+
 }
 

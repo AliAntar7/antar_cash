@@ -13,7 +13,7 @@ class TransactionType extends TransactionStates {}
 class GetUserNameSuccess extends TransactionStates {}
 class LoadingToGetAllTransaction extends TransactionStates {}
 class GetAllTransactionSucces extends TransactionStates {
-  final QuerySnapshot<Map<String, dynamic>> transactionsList;
+  final List<QueryDocumentSnapshot> transactionsList;
   GetAllTransactionSucces({required this.transactionsList});
 }
 class GetAllTransactionFailed extends TransactionStates {
@@ -21,10 +21,10 @@ class GetAllTransactionFailed extends TransactionStates {
   GetAllTransactionFailed({required this.message});
 }
 
-class CalculatingTotalAmount extends TransactionStates {}
-class CalculatedTotalAmount extends TransactionStates {}
-class CalculateTotalAmountFailed extends TransactionStates {
+class LoadingToDeleteTransaction extends TransactionStates {}
+class DeleteTransactionSucces extends TransactionStates {}
+class DeleteTransactionFailed extends TransactionStates {
   final String message;
-  CalculateTotalAmountFailed({required this.message});
+  DeleteTransactionFailed({required this.message});
 }
 
