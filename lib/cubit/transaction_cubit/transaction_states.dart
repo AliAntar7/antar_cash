@@ -16,6 +16,10 @@ class GetAllTransactionSucces extends TransactionStates {
   final List<QueryDocumentSnapshot> transactionsList;
   GetAllTransactionSucces({required this.transactionsList});
 }
+class GetTransactionsGroupedByHourSuccess extends TransactionStates {
+  final Map<String, List<QueryDocumentSnapshot>> transactionsByHour;
+  GetTransactionsGroupedByHourSuccess({required this.transactionsByHour});
+}
 class GetAllTransactionFailed extends TransactionStates {
   final String message;
   GetAllTransactionFailed({required this.message});

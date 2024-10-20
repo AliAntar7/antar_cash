@@ -1,5 +1,6 @@
 import 'package:antar_cash/cubit/calculate_cubit/calculate_cubit.dart';
 import 'package:antar_cash/cubit/calculate_cubit/calculate_states.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -45,6 +46,7 @@ class StatisticsScreen extends StatelessWidget {
                             bottom: 10,
                           ),
                           decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black.withOpacity(0.7)),
                             borderRadius: BorderRadius.circular(30),
                             color: Colors.grey.withOpacity(0.3),
                           ),
@@ -92,6 +94,7 @@ class StatisticsScreen extends StatelessWidget {
                               child: Container(
                                 height: 200,
                                 decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black.withOpacity(0.7)),
                                   borderRadius: BorderRadius.circular(30),
                                   color: Colors.grey.withOpacity(0.3),
                                 ),
@@ -140,6 +143,7 @@ class StatisticsScreen extends StatelessWidget {
                               child: Container(
                                 height: 200,
                                 decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black.withOpacity(0.7)),
                                   borderRadius: BorderRadius.circular(30),
                                   color: Colors.grey.withOpacity(0.3),
                                 ),
@@ -192,6 +196,7 @@ class StatisticsScreen extends StatelessWidget {
                               child: Container(
                                 height: 200,
                                 decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black.withOpacity(0.7)),
                                   borderRadius: BorderRadius.circular(30),
                                   color: Colors.grey.withOpacity(0.3),
                                 ),
@@ -240,6 +245,7 @@ class StatisticsScreen extends StatelessWidget {
                               child: Container(
                                 height: 200,
                                 decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black.withOpacity(0.7)),
                                   borderRadius: BorderRadius.circular(30),
                                   color: Colors.grey.withOpacity(0.3),
                                 ),

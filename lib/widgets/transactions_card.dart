@@ -33,12 +33,12 @@ class TransactionsCard extends StatelessWidget {
               textDirection: TextDirection.rtl,
               child: AlertDialog(
                 title: const Text(
-                    'تفاصيل العملية',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'changa_regular',
-                      fontWeight: FontWeight.bold,
-                    ),
+                  'تفاصيل العملية',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'changa_regular',
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 content: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -55,12 +55,12 @@ class TransactionsCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                            userName,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontFamily: 'changa_regular',
-                              color: Colors.red,
-                            ),
+                          userName,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontFamily: 'changa_regular',
+                            color: Colors.red,
+                          ),
                         ),
                       ],
                     ),
@@ -207,63 +207,91 @@ class TransactionsCard extends StatelessWidget {
         );
       },
       child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Card(
-            child: ListTile(
-              title: Row(
-                children: [
-                  const Text(
-                    'اسم الموظف : ',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'changa_regular',
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    userName,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'changa_regular',
-                      color: Colors.grey[700],
-                    ),
-                  ),
-                ],
-              ),
-              subtitle: Row(
-                children: [
-                  const Text(
-                    'نوع العملية : ',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'changa_regular',
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    type,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'changa_regular',
-                      color: Colors.indigo,
-                    ),
-                  ),
-                ],
-              ),
-              trailing: Text(
-                '$amount ج ',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'changa_regular',
-                  color: type == 'تحويل' ? Colors.red : Colors.green,
-                  fontWeight: FontWeight.bold,
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black.withOpacity(0.7)),
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.grey.withOpacity(0.3),
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const Spacer(
+                  flex: 2,
                 ),
+                const Icon(
+                  Icons.person,
+                  color: Colors.black,
+                  size: 20,
+                ),
+                Text(
+                  ' $userName',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'changa_regular',
+                    color: Colors.black87,
+                  ),
+                ),
+                const Spacer(
+                  flex: 12,
+                ),
+                Icon(
+                  Icons.access_time,
+                  color: Colors.black87,
+                  size: 20,
+                ),
+                Text(
+                  ' $date',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'changa_regular',
+                    color: Colors.black87,
+                  ),
+                ),
+                const Spacer(
+                  flex: 2,
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 1.7,
+                    color: Colors.black.withOpacity(0.7),
+                ),
+                borderRadius: BorderRadius.circular(30),
+                color: type == 'تحويل' ? Colors.red.withOpacity(0.1) : Colors.green.withOpacity(0.1),
+              ),
+              child: Row(
+                children:
+                [
+                  Image(
+                    image: type == 'تحويل' ? const AssetImage('assets/images/red_arrow.png') : const AssetImage('assets/images/green_arrow.png'),
+                    height: 40,
+                    width: 40,
+                  ),
+                  const Spacer(),
+                  Text(
+                    '$amount ج.م',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'changa_regular',
+                      fontWeight: FontWeight.bold,
+                      color: type == 'تحويل' ? Colors.red : Colors.green,
+                    ),
+                  ),
+                ],
               ),
             ),
-          )),
+          ],
+        ),
+      ),
     );
   }
 }

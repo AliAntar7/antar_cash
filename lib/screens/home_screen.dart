@@ -36,7 +36,8 @@ class HomeScreen extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          if (state is LoadingToGetAllTransaction) {
+          if (state is LoadingToGetAllTransaction
+              || state is LoadingToDeleteTransaction) {
             return const Scaffold(
               body: Center(
                 child: CircularProgressIndicator(),
@@ -96,13 +97,13 @@ class HomeScreen extends StatelessWidget {
                                 onDismissed: (direction) {
                                   context.read<TransactionCubit>().deleteTransaction(transaction.id);
                                   state.transactionsList.removeAt(index);
-                                  context.read<TransactionCubit>().getAllTransactions();
                                 },
                                 background: Container(
                                   alignment: Alignment.centerLeft,
-                                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                                  padding: const EdgeInsets.all(10),
+                                  margin: const EdgeInsets.symmetric(vertical: 10),
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0),
+                                    borderRadius: BorderRadius.circular(10),
                                     color: Colors.red,
                                   ),
                                   child: const Row(
