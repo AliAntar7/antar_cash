@@ -10,6 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart' as showDateFormat;
 
+import 'transactions_per_day_screen.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -65,12 +67,23 @@ class HomeScreen extends StatelessWidget {
                       },
                     ),
                     IconButton(
-                      icon: const Icon(Icons.filter_list),
+                      icon: const Icon(Icons.calendar_month_rounded),
                       onPressed: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const StatisticsScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.calendar_today_outlined),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const TransactionsPerDayScreen(),
                           ),
                         );
                       },

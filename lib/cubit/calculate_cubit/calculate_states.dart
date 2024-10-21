@@ -10,7 +10,16 @@ class CalculateTotalAmountFailed extends CalculateStates {
 }
 
 class LoadingToGetAllTransaction extends CalculateStates {}
-class GetTransactionsGroupedByHourSuccess extends CalculateStates {}
+class GetTransactionsGroupedByDaySuccess extends CalculateStates {
+
+  final Map<String, Map<String, int>> infoOfEachDay;
+  GetTransactionsGroupedByDaySuccess({required this.infoOfEachDay});
+}
+class GetTransactionsGroupedByMonthSuccess extends CalculateStates {
+
+  final Map<String, Map<String, int>> infoOfEachMonth;
+  GetTransactionsGroupedByMonthSuccess({required this.infoOfEachMonth});
+}
 class GetAllTransactionFailed extends CalculateStates {
   final String message;
   GetAllTransactionFailed({required this.message});

@@ -1,6 +1,5 @@
 import 'package:antar_cash/cubit/calculate_cubit/calculate_cubit.dart';
 import 'package:antar_cash/cubit/calculate_cubit/calculate_states.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +15,7 @@ class StatisticsScreen extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: const Text(
-              'إحصائيات اليوم',
+              'إحصائيات الشهر',
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.black,
@@ -63,7 +62,7 @@ class StatisticsScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   const Text(
-                                    'حركة اليوم  ',
+                                    'حركة الشهر  ',
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: Colors.black,
