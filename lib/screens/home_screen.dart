@@ -1,6 +1,7 @@
 import 'package:antar_cash/cubit/transaction_cubit/transaction_cubit.dart';
 import 'package:antar_cash/cubit/transaction_cubit/transaction_states.dart';
 import 'package:antar_cash/screens/add_transaction_screen.dart';
+import 'package:antar_cash/screens/all_transactions_day.dart';
 import 'package:antar_cash/screens/profile_screen.dart';
 import 'package:antar_cash/screens/statistics_screen.dart';
 import 'package:antar_cash/widgets/transactions_card.dart';
@@ -84,6 +85,17 @@ class HomeScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) => const TransactionsPerDayScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.calendar_today_outlined),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AllTransactionsDay(),
                           ),
                         );
                       },

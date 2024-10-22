@@ -23,7 +23,7 @@ class TransactionsPerDayScreen extends StatelessWidget {
           ),
         ),
         body: BlocProvider(
-          create: (context) => CalculateCubit()..getTransactionsGroupedByDay(),
+          create: (context) => CalculateCubit()..calculateAllTransactionsGroupedByDay(),
           child: BlocConsumer<CalculateCubit, CalculateStates>(
             listener: (context, state) {},
             builder: (context, state) {
@@ -31,7 +31,7 @@ class TransactionsPerDayScreen extends StatelessWidget {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
-              } else if (state is GetTransactionsGroupedByDaySuccess) {
+              } else if (state is calculateAllTransactionsGroupedByDaySuccess) {
                 return Column(
                   children: [
                     Text(

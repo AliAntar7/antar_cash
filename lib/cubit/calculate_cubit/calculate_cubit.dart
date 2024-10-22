@@ -39,9 +39,51 @@ class CalculateCubit extends Cubit<CalculateStates> {
 
 
 
+  void getTransactionsGroupedByDay() async {
+    emit(LoadingToGetTransactionsGroupedByDay());
+    try {
+      // Get all transactions ordered by date in descending order
+      final transactionsList = await FirebaseFirestore.instance
+          .collection('transactions')
+          .orderBy('date', descending: true)
+          .get();
+
+      // Map to store transactions grouped by day
+      Map<String, List<QueryDocumentSnapshot>> transactionsByDay = {};
+
+      // Arabic days of the week
+      List<String> arabicDays = ['الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت', 'الأحد'];
+
+      for (var transaction in transactionsList.docs) {
+        // Get the 'date' field from the document
+        Timestamp transactionDate = transaction['date'];
+
+        // Extract the weekday in Arabic
+        String weekday = arabicDays[transactionDate.toDate().weekday - 1];
+
+        // Format the date to "DD/MM/YYYY" and combine with the weekday in Arabic
+        String formattedDate = '$weekday ${DateFormat('yyyy/MM/dd').format(transactionDate.toDate())}';
+
+        // Group transactions by the formatted date
+        if (transactionsByDay.containsKey(formattedDate)) {
+          transactionsByDay[formattedDate]!.add(transaction);
+        } else {
+          transactionsByDay[formattedDate] = [transaction];
+        }
+      }
+
+      // Emit success state with the grouped transactions by day
+      emit(getTransactionsGroupedByDaySuccess(transactionsByDay: transactionsByDay));
+    } on FirebaseException catch (e) {
+      emit(GetTransactionsGroupedByDayFailed(message: 'Firebase Error: ${e.message}'));
+    } catch (e) {
+      print(e);
+      emit(GetTransactionsGroupedByDayFailed(message: e.toString()));
+    }
+  }
 
   int totalLockOfAllDays = 0;
-  void getTransactionsGroupedByDay() async {
+  void calculateAllTransactionsGroupedByDay() async {
     emit(LoadingToGetAllTransaction());
     try {
       // Get all transactions ordered by date in descending order
@@ -125,7 +167,7 @@ class CalculateCubit extends Cubit<CalculateStates> {
 
 
       // Emit success state with the grouped transactions by day
-      emit(GetTransactionsGroupedByDaySuccess(infoOfEachDay: infoOfEachDay));
+      emit(calculateAllTransactionsGroupedByDaySuccess(infoOfEachDay: infoOfEachDay));
     } on FirebaseException catch (e) {
       emit(GetAllTransactionFailed(message: 'Firebase Error: ${e.message}'));
     } catch (e) {

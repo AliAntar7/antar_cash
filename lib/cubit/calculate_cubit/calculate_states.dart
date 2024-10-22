@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class CalculateStates {}
@@ -10,10 +11,16 @@ class CalculateTotalAmountFailed extends CalculateStates {
 }
 
 class LoadingToGetAllTransaction extends CalculateStates {}
-class GetTransactionsGroupedByDaySuccess extends CalculateStates {
+class LoadingToGetTransactionsGroupedByDay extends CalculateStates {}
+class calculateAllTransactionsGroupedByDaySuccess extends CalculateStates {
 
   final Map<String, Map<String, int>> infoOfEachDay;
-  GetTransactionsGroupedByDaySuccess({required this.infoOfEachDay});
+  calculateAllTransactionsGroupedByDaySuccess({required this.infoOfEachDay});
+}
+class getTransactionsGroupedByDaySuccess extends CalculateStates {
+
+  final Map<String, List<QueryDocumentSnapshot>> transactionsByDay;
+  getTransactionsGroupedByDaySuccess({required this.transactionsByDay});
 }
 class GetTransactionsGroupedByMonthSuccess extends CalculateStates {
 
@@ -23,4 +30,8 @@ class GetTransactionsGroupedByMonthSuccess extends CalculateStates {
 class GetAllTransactionFailed extends CalculateStates {
   final String message;
   GetAllTransactionFailed({required this.message});
+}
+class GetTransactionsGroupedByDayFailed extends CalculateStates {
+  final String message;
+  GetTransactionsGroupedByDayFailed({required this.message});
 }
