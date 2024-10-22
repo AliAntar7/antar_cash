@@ -62,7 +62,7 @@ class StatisticsScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   const Text(
-                                    'حركة الشهر  ',
+                                    'إجمالي العمليات  ',
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: Colors.black,

@@ -39,6 +39,8 @@ class CalculateCubit extends Cubit<CalculateStates> {
 
 
 
+
+  int totalLockOfAllDays = 0;
   void getTransactionsGroupedByDay() async {
     emit(LoadingToGetAllTransaction());
     try {
@@ -72,6 +74,7 @@ class CalculateCubit extends Cubit<CalculateStates> {
         }
       }
 
+
       /// this map to store the total amount, fees, and service for each day
       Map<String, Map<String, int>> infoOfEachDay = {};
       for (var Day in transactionsByDay.keys) {
@@ -92,6 +95,15 @@ class CalculateCubit extends Cubit<CalculateStates> {
             totalAmountOfDeposits += int.parse(transaction['amount']);
           }
         }
+
+
+        int halfOfTotalFees = totalFees ~/ 2;
+        int totalLockOfTransfers = totalAmountOfTransfers + totalService + halfOfTotalFees;
+        int totalLockOfDeposits = totalAmountOfDeposits + halfOfTotalFees;
+        int totalLockOfTheDay = totalLockOfDeposits - totalLockOfTransfers;
+
+
+
         /// this is the map that will be added to the infoOfEachDay map
         infoOfEachDay[Day] = {
           'totalAmount': totalAmount,
@@ -99,8 +111,18 @@ class CalculateCubit extends Cubit<CalculateStates> {
           'totalAmountOfDeposits': totalAmountOfDeposits,
           'totalFees': totalFees,
           'totalService': totalService,
+          'halfOfTotalFees': halfOfTotalFees,
+          'totalLockOfTransfers': totalLockOfTransfers,
+          'totalLockOfDeposits': totalLockOfDeposits,
+          'totalLockOfTheDay': totalLockOfTheDay,
         };
       }
+
+      for (var day in infoOfEachDay.keys) {
+        totalLockOfAllDays += infoOfEachDay[day]!['totalLockOfTheDay']!;
+      }
+
+
 
       // Emit success state with the grouped transactions by day
       emit(GetTransactionsGroupedByDaySuccess(infoOfEachDay: infoOfEachDay));
